@@ -3,8 +3,11 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-class WebparserItem(scrapy.Item):
+import scrapy
 
+
+class JobparserItem(scrapy.Item):
+    # define the fields for your item here like:
     _id = scrapy.Field()
     name = scrapy.Field()
     salary_min = scrapy.Field()

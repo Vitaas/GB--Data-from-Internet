@@ -2,19 +2,19 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+from itemadapter import ItemAdapter
 from pymongo import MongoClient
 import re
-from webparser.items import WebparserItemSJ
-from webparser.items import WebparserItem
+from jobparser.items import JobparserItem
 
 
-class WebparserPipeline(object):
+class JobparserPipeline:
     def __init__(self):
-        client = MongoClient('localhost', 27017)
-        self.mongo_base = client.task5
+        self.client = MongoClient('localhost', 27017)
+        self.mongo_base = self.client.task5
 
     def process_item(self, item, spider):
-        if not isinstance(item, WebparserItem):
+        if not isinstance(item, JobparserItem):
             return item
 
         collection = self.mongo_base[spider.name]
@@ -39,13 +39,13 @@ class WebparserPipeline(object):
         return item
 
 
-class WebparserPipelineSJ(object):
+class JobparserPipelineSJ(object):
     def __init__(self):
-        client = MongoClient('localhost', 27017)
-        self.mongo_base = client.task5
+        self.client = MongoClient('localhost', 27017)
+        self.mongo_base = self.client.task5
 
     def process_item(self, item, spider):
-        if not isinstance(item, WebparserItemSJ):
+        if not isinstance(item, JobparserItemSJ):
             return item
 
         collection = self.mongo_base[spider.name]
