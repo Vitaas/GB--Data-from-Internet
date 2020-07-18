@@ -1,4 +1,4 @@
-# Scrapy settings for webparser project
+# Scrapy settings for jobparser project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,20 +7,20 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'webparser'
+BOT_NAME = 'jobparser'
 
-SPIDER_MODULES = ['webparser.spiders']
-NEWSPIDER_MODULE = 'webparser.spiders'
+SPIDER_MODULES = ['jobparser.spiders']
+NEWSPIDER_MODULE = 'jobparser.spiders'
 
 LOG_ENABLED = True
-LOG_LEVEL = 'DEBUG'  #INFO,   ERROR
-#LOG_FILE = 'jobparser_logs.txt'
+LOG_LEVEL = 'DEBUG'
+# LOG_FILE = 'jobparser.txt'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 
 # Obey robots.txt rules
-#ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 16
@@ -28,13 +28,13 @@ CONCURRENT_REQUESTS = 16
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 0
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
-#CONCURRENT_REQUESTS_PER_IP = 16
+# CONCURRENT_REQUESTS_PER_DOMAIN = 16
+# CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-COOKIES_ENABLED = False
+COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -48,13 +48,13 @@ COOKIES_ENABLED = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'webparser.middlewares.WebparserSpiderMiddleware': 543,
+#    'jobparser.middlewares.JobparserSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'webparser.middlewares.WebparserDownloaderMiddleware': 543,
+#    'jobparser.middlewares.JobparserDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,12 +65,8 @@ COOKIES_ENABLED = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'webparser.pipelines.WebparserPipeline': 300,
-#}
 ITEM_PIPELINES = {
-   'webparser.pipelines.WebparserPipeline': 300,
-   'webparser.pipelines.WebparserPipelineSJ': 100,
+   'jobparser.pipelines.JobparserPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
