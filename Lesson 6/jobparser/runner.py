@@ -3,7 +3,7 @@ from scrapy.settings import Settings
 
 from jobparser import settings
 from jobparser.spiders.hhru import HhruSpider
-from jobparser.spiders.sjru import SuperjobruSpider
+from jobparser.spiders.SuperJob import SuperjobruSpider
 
 if __name__ == '__main__':
     crawler_settings = Settings()
