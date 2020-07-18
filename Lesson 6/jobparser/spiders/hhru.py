@@ -7,7 +7,7 @@ class HhruSpider(scrapy.Spider):
     allowed_domains = ['hh.ru']
     start_urls = ['https://izhevsk.hh.ru/search/vacancy?area=&st=searchVacancy&fromSearch=true&text=python']
 
-    def parse(self, response:HtmlResponse):
+    def parse(self, response: HtmlResponse):
         next_page = response.css('a.HH-Pager-Controls-Next::attr(href)').extract_first()
 
         vacansy_links = response.css('a.bloko-link.HH-LinkModifier::attr(href)').extract()
@@ -24,4 +24,4 @@ class HhruSpider(scrapy.Spider):
         salary_max = response.css('div.vacancy-title meta[itemprop="maxValue"]::attr(content)').extract()
         url = response.css('div.bloko-column_xs-4 div[itemscope="itemscope"] meta[itemprop="url"]::attr(content)').extract()
 
-        yield WebparserItem(name=name, salary=salary, salary_min=salary_min, salary_max=salary_max, url=url, site=self.start_urls[0])
+        yield JobparserItem(name=name, salary=salary, salary_min=salary_min, salary_max=salary_max, url=url, site=self.start_urls[0])

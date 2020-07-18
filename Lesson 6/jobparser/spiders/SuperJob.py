@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.http import HtmlResponse
-from webparser.items import WebparserItemSJ
+from jobparser.items import JobparserItem
 
 
 class SuperjobruSpider(scrapy.Spider):
@@ -10,7 +10,9 @@ class SuperjobruSpider(scrapy.Spider):
 
     def parse(self, response):
         next_page = response.css('a.f-test-button-dalshe::attr(href)').extract_first()
+
         yield response.follow(next_page, callback=self.parse)
+
         vacancy = response.css(
             'div._1ID8B div.f-test-vacancy-item div._3wZVt a._3dPok::attr(href)').extract()
         for link in vacancy:
@@ -19,4 +21,5 @@ class SuperjobruSpider(scrapy.Spider):
     def vacancy_parse(self, response: HtmlResponse):
         name = response.css('div._3MVeX h1._3mfro::text').extract_first()
         salary = response.css('div._3MVeX span._2Wp8I span::text').extract()
-        yield WebparserItemSJ(name=name, salary=salary, url=response.url, site=self.start_urls[0])
+
+        yield JobparserItem(name=name, salary=salary, url=response.url, site=self.start_urls[0])
